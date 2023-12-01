@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using SchoolProjectA_ClientMVC.Views.Main;
 using SchoolProjectA_ClientMVC.Views.Log;
 using SchoolProjectA_ClientMVC.Views.Menu;
+using System;
 
 namespace SchoolProjectA_ClientMVC.Controllers;
 
@@ -23,6 +24,8 @@ class ConnexionController
 
     private void HandleConnexion(object? sender, RoutedEventArgs e)
     {
+        System.Diagnostics.Debug.WriteLine("ok" + _view.LogControl.LoginTB.Text);
+        _view.MenuControl.User = _view.LogControl.LoginTB.Text;
         _view.FullPage.Content = _view.MenuControl;
     }
 

@@ -5,9 +5,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SchoolProjectA_ClientMVC.Views.Menu.MenuView">
   <Panel>
-    <StackPanel>
-      <Button Name="DisconnectBtn">Deconnexion</Button>
-    </StackPanel>
+	  <StackPanel Spacing="12" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+		  <TextBlock Name="TextConnect"></TextBlock>
+          <Button Margin="20,20" Name="DisconnectBtn">Deconnexion</Button>
+      </StackPanel>
   </Panel>
   
 </UserControl>

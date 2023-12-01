@@ -5,9 +5,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SchoolProjectA_ClientMVC.Views.Log.LogView">
   <Panel>
-    <StackPanel>
-      <Button Name="ConnectBtn">Connexion</Button>
-    </StackPanel>
+        <StackPanel Spacing="12" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+			<TextBox Name="LoginTB" Margin="5,5" Watermark="Login"></TextBox>
+			<TextBox Margin="5,5" Watermark="Password" PasswordChar="*"></TextBox>
+            <Button Margin="10,10" Name="ConnectBtn">Connexion</Button>
+        </StackPanel>
   </Panel>
   
 </UserControl>
