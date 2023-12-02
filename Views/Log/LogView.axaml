@@ -8,6 +8,7 @@
         <StackPanel Spacing="12" VerticalAlignment="Bottom" HorizontalAlignment="Center">
 			<TextBox Name="LoginTB" Margin="5,5" Watermark="Login"></TextBox>
 			<TextBox Name="PwdTB" Margin="5,5" Watermark="Password" PasswordChar="*"></TextBox>
+			<TextBlock Name="QueryLbl" IsVisible="false" Color="Red"></TextBlock>
             <Button Margin="10,10" Name="ConnectBtn">Connexion</Button>
         </StackPanel>
   </Panel>

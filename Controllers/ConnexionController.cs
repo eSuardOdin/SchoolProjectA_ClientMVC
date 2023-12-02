@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using SchoolProjectA_ClientMVC.Views.Log;
 using SchoolProjectA_ClientMVC.Views.Menu;
 using System;
+using System.Text.RegularExpressions;
 
 namespace SchoolProjectA_ClientMVC.Controllers;
 
@@ -75,8 +76,18 @@ class ConnexionController
             isErrorFree = false;
         }
 
-        // Check special login char
+        // Gestion de la taille ? Ailleurs ?
 
+        // Check special login char
+        Regex reg = new("^[a-zA-Z0-9]+$");
+        if(isErrorFree && !reg.IsMatch(_view.LogControl.LoginTB.Text))
+        {
+            _view.LogControl.LoginTB.Watermark = "Doit être être composé de symboles alphanumériques";
+            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
+            isErrorFree = false;
+        }
+
+        
 
 
 
