@@ -14,12 +14,17 @@ class ConnexionController
     public ConnexionController(MainWindow view)
     {
         _view = view;
-        ConfigureConnexionButtons();
+        LinkEvents();
     }
 
-    private void ConfigureConnexionButtons()
+    private void LinkEvents()
     {
+        // Log page
         _view.LogControl.ConnectBtn.Click += HandleConnexion;
+        _view.LogControl.LoginTB.GotFocus += ResetControl;
+        _view.LogControl.PwdTB.GotFocus += ResetControl;
+
+        // Menu page
         _view.MenuControl.DisconnectBtn.Click += HandleDeconnexion;
     }
 
@@ -38,6 +43,19 @@ class ConnexionController
         _view.FullPage.Content = _view.LogControl;
     }
 
+    private void ResetControl(object? sender, RoutedEventArgs e)
+    {
+        if(((TextBox)sender).Background == Avalonia.Media.Brushes.Red)
+        {
+            ((TextBox)sender).Background = Avalonia.Media.Brushes.White;
+            ((TextBox)sender).Watermark = ((TextBox)sender).Name == "LoginTB" ? "Login" : "Password";
+        }
+    }
+
+    /// <summary>
+    /// Checks errors in input when trying to connect to application + change colors of input.
+    /// </summary>
+    /// <returns></returns>
     private bool ValidateConnexionInput()
     {
         bool isErrorFree = true;
@@ -53,7 +71,7 @@ class ConnexionController
         if (_view.LogControl.PwdTB.Text?.Trim() == "" || _view.LogControl.PwdTB.Text is null)
         {
             _view.LogControl.PwdTB.Watermark = "Le mot de passe doit être renseigné";
-            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
+            _view.LogControl.PwdTB.Background = Avalonia.Media.Brushes.Red;
             isErrorFree = false;
         }
 
@@ -66,5 +84,7 @@ class ConnexionController
 
         return isErrorFree;
     }
+
+
 }
 
