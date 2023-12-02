@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using SchoolProjectA_ClientMVC.Views.Main;
+using Avalonia.Markup.Xaml;
 using SchoolProjectA_ClientMVC.Views.Log;
 using SchoolProjectA_ClientMVC.Views.Menu;
 using System;
@@ -24,14 +25,46 @@ class ConnexionController
 
     private void HandleConnexion(object? sender, RoutedEventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine("ok" + _view.LogControl.LoginTB.Text);
-        _view.MenuControl.User = _view.LogControl.LoginTB.Text;
-        _view.FullPage.Content = _view.MenuControl;
+        if(ValidateConnexionInput())
+        {
+            System.Diagnostics.Debug.WriteLine("ok" + _view.LogControl.LoginTB.Text);
+            _view.MenuControl.User = _view.LogControl.LoginTB.Text;
+            _view.FullPage.Content = _view.MenuControl;
+        }
     }
 
     private void HandleDeconnexion(object? sender, RoutedEventArgs e)
     {
         _view.FullPage.Content = _view.LogControl;
+    }
+
+    private bool ValidateConnexionInput()
+    {
+        bool isErrorFree = true;
+
+        // Check emptyness
+        if(_view.LogControl.LoginTB.Text?.Trim() == "" || _view.LogControl.LoginTB.Text is null)
+        {
+            _view.LogControl.LoginTB.Watermark = "Le login doit être renseigné";
+            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
+            isErrorFree = false;
+        }
+
+        if (_view.LogControl.PwdTB.Text?.Trim() == "" || _view.LogControl.PwdTB.Text is null)
+        {
+            _view.LogControl.PwdTB.Watermark = "Le mot de passe doit être renseigné";
+            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
+            isErrorFree = false;
+        }
+
+        // Check special login char
+
+
+
+
+        // Check query
+
+        return isErrorFree;
     }
 }
 
