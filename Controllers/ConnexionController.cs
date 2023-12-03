@@ -38,6 +38,7 @@ class ConnexionController
         {
             //System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
             //_view.MenuControl.User = _view.LogControl.LoginTB.Text;
+            _view.LogControl.ConnectBtn.IsEnabled = false;
             Moni? moni = await CheckMoniCredentials();
             if(moni == null)
             {
@@ -53,7 +54,7 @@ class ConnexionController
                 System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
                 _view.FullPage.Content = _view.MenuControl;
             }
-            
+            _view.LogControl.ConnectBtn.IsEnabled = true;
         }
     }
 
