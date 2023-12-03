@@ -14,3 +14,9 @@
     - Le ConnexionController déclenche son HandleConnexion().
         2a)
 	- 
+
+
+
+
+à faire :
+Mieux checker le pseudo + mdp lors de la création

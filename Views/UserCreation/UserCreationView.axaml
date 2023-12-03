@@ -8,9 +8,10 @@
 			 Background="WhiteSmoke"
 			 >
 	<Grid RowDefinitions="*,70,45,70,70,70,50">
-		<Panel VerticalAlignment="Top" Grid.Row="0">
-			<Button BorderBrush="Black" Name="CancelUserCreationBtn" Margin="10" Background="Crimson">Annuler</Button>	
-		</Panel>
+		<StackPanel VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Center">
+			<TextBlock Name="QueryStatusLbl" HorizontalAlignment="Center" IsVisible="False"></TextBlock>
+			<Button BorderBrush="Black" Name="CancelUserCreationBtn" Margin="10" Background="Beige">Retour</Button>	
+		</StackPanel>
 		<StackPanel Grid.Row="1" HorizontalAlignment="Center">
 			<TextBox HorizontalAlignment="Center" Name="LoginTB" Margin="5,5" Watermark="Login" Height="35" Width="250" MaxLength="32"></TextBox>
 			<TextBlock HorizontalAlignment="Center" Name="LoginErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
@@ -19,7 +20,7 @@
 			<TextBox PasswordChar="*" HorizontalAlignment="Center" Name="PwdTB" Margin="5,5" Watermark="Mot de passe" Height="35" Width="250" MaxLength="64"></TextBox>
 		</StackPanel>
 		<StackPanel Grid.Row="3" HorizontalAlignment="Center">
-			<TextBox PasswordChar="*" HorizontalAlignment="Center" Name="PwdConfiramtionTB" Margin="5,5" Watermark="Confirmation mot de passe" Height="35" Width="250" MaxLength="64"></TextBox>
+			<TextBox PasswordChar="*" HorizontalAlignment="Center" Name="PwdConfirmationTB" Margin="5,5" Watermark="Confirmation mot de passe" Height="35" Width="250" MaxLength="64"></TextBox>
 			<TextBlock HorizontalAlignment="Center" Name="PwdErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
 		</StackPanel>
 		<StackPanel Grid.Row="4" HorizontalAlignment="Center">

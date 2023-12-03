@@ -9,6 +9,7 @@ using System;
 using System.Text.RegularExpressions;
 using SchoolProjectA_ClientMVC.Models;
 using System.Runtime.CompilerServices;
+using System.Drawing;
 
 namespace SchoolProjectA_ClientMVC.Controllers;
 
@@ -35,6 +36,7 @@ class GlobalController
 
         // User creation
         _view.MyUserCreationView.CancelUserCreationBtn.Click += CancelUserCreation;
+        _view.MyUserCreationView.CreateUserBtn.Click += CreateUser;
 
         // Menu page
         _view.MyMenuView.DisconnectBtn.Click += HandleDeconnexion;
@@ -171,11 +173,16 @@ class GlobalController
         _view.MyLogView.PwdTB.Text = "";
     }
 
+
+
+
     //-----------------------
     //      O----------O
     //      | MenuView |
     //      O----------O
     //-----------------------
+
+
     /// <summary>
     /// Handles the deconnexion
     /// </summary>
@@ -191,25 +198,130 @@ class GlobalController
 
 
 
-    //------------------------------
+    //-----------------------------
     //      O------------------O
     //      | UserCreationView |
     //      O------------------O
     //-----------------------------
+
+
+
     private void CancelUserCreation(object? sender, RoutedEventArgs e)
     {
         _view.FullPage.Content = _view.MyLogView;
+        ResetUserCreationTextBoxes();
+        ResetErrorLbl();
     }
 
     private bool CheckUserCreationInput()
     {
+        var view = _view.MyUserCreationView;
         bool IsErrorFree = true;
+        if(view.LastNameTB.Text?.Trim() == "" || view.LastNameTB.Text is null)
+        {
+            IsErrorFree = false;
+            view.LastNameErrorLbl.Text = "Le champ de nom ne doit pas être vide.";
+            view.LastNameErrorLbl.IsVisible = true;
+        }
+        if (view.FirstNameTB.Text?.Trim() == "" || view.FirstNameTB.Text is null)
+        {
+            IsErrorFree = false;
+            view.FirstNameErrorLbl.Text = "Le champ de prénom ne doit pas être vide.";
+            view.FirstNameErrorLbl.IsVisible = true;
+        }
+        if (view.LoginTB.Text?.Trim() == "" || view.LoginTB.Text is null)
+        {
+            IsErrorFree = false;
+            view.LoginErrorLbl.Text = "Le champ de login ne doit pas être vide.";
+            view.LoginErrorLbl.IsVisible = true;
+        }
+        if (view.LoginTB.Text?.Trim() == "" || view.LoginTB.Text is null)
+        {
+            IsErrorFree = false;
+            view.LoginErrorLbl.Text = "Le champ de login ne doit pas être vide.";
+            view.LoginErrorLbl.IsVisible = true;
+        }
 
+        if (view.PwdTB.Text?.Trim() == "" || view.PwdConfirmationTB.Text?.Trim() == "" || view.PwdConfirmationTB.Text is null || view.PwdTB.Text is null)
+        {
+            IsErrorFree = false;
+            view.PwdErrorLbl.Text = "Les champ de mot de passe ne doivent pas être vide.";
+            view.PwdErrorLbl.IsVisible = true;
+        }
+        if (view.PwdTB.Text?.Trim() != "" && view.PwdConfirmationTB.Text?.Trim() != "" && view.PwdConfirmationTB.Text != null && view.PwdTB.Text != null)
+        {
+            if (view.PwdTB.Text != view.PwdConfirmationTB.Text)
+            {
+                IsErrorFree = false;
+                view.PwdErrorLbl.Text = "Les champ de mot de passe ne correspondent pas.";
+                view.PwdErrorLbl.IsVisible = true;
+            }
+        }
 
         return IsErrorFree;
     }
 
-    
+
+    private async void CreateUser(object? sender, RoutedEventArgs e)
+    {
+        ResetErrorLbl();
+        var view = _view.MyUserCreationView;
+        view.CreateUserBtn.IsEnabled = false;
+        bool isErrorFree = CheckUserCreationInput();
+        if(isErrorFree)
+        {
+            Moni? moni = await Queries.GetMoni(_view.MyUserCreationView.LoginTB.Text);
+            if (moni != null)
+            {
+                view.LoginErrorLbl.IsVisible = true;
+                view.LoginErrorLbl.Text = $"Le login {moni.MoniLogin} n'est pas disponible";
+                isErrorFree = false;
+            }
+            if(isErrorFree)
+            {
+
+                Moni? targetMoni = null;
+                moni = new() { MoniLogin = view.LoginTB.Text, MoniPwd = view.PwdTB.Text, FirstName = view.FirstNameTB.Text, LastName = view.LastNameTB.Text };
+                targetMoni = await Queries.PostMoni(moni);
+
+                view.QueryStatusLbl.IsVisible = true;
+                if(targetMoni != null)
+                {
+                    view.QueryStatusLbl.Text = $"Le moni {targetMoni.MoniLogin} a été créé avec succès, vous pouvez quitter cette page pour vous connecter";
+                    view.QueryStatusLbl.Foreground = Avalonia.Media.Brushes.Green;
+                }
+                else
+                {
+                    view.QueryStatusLbl.Text = $"Erreur lors de la création du Moni";
+                    view.QueryStatusLbl.Foreground = Avalonia.Media.Brushes.Red;
+                }
+            }
+        }
+        
+        _view.MyUserCreationView.CreateUserBtn.IsEnabled = true;
+    }
+
+
+    private void ResetErrorLbl()
+    {
+        var view = _view.MyUserCreationView;
+        view.LastNameErrorLbl.IsVisible = false;
+        view.FirstNameErrorLbl.IsVisible = false;
+        view.LoginErrorLbl.IsVisible = false;
+        view.PwdErrorLbl.IsVisible = false;
+        view.QueryStatusLbl.IsVisible = false;
+    }
+
+    private void ResetUserCreationTextBoxes()
+    {
+        var view = _view.MyUserCreationView;
+        view.LoginTB.Text = "";
+        view.PwdTB.Text = "";
+        view.PwdConfirmationTB.Text = "";
+        view.FirstNameTB.Text = "";
+        view.LastNameTB.Text = "";
+    }
+
 
 
 }
