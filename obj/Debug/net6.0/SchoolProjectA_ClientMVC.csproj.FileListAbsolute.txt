@@ -129,3 +129,4 @@ C:\Users\Erwann\source\repos\SchoolProjectA_ClientMVC\obj\Debug\net6.0\SchoolPro
 C:\Users\Erwann\source\repos\SchoolProjectA_ClientMVC\obj\Debug\net6.0\SchoolProjectA_ClientMVC.csproj.CopyComplete
 C:\Users\Erwann\source\repos\SchoolProjectA_ClientMVC\obj\Debug\net6.0\SchoolProjectA_ClientMVC.genruntimeconfig.cache
 C:\Users\Erwann\source\repos\SchoolProjectA_ClientMVC\obj\Debug\net6.0\ref\SchoolProjectA_ClientMVC.dll
+C:\Users\Erwann\Source\Repos\SchoolProjectA_ClientMVC\bin\Debug\net6.0\Newtonsoft.Json.dll

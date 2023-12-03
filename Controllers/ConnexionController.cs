@@ -1,11 +1,14 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using SchoolProjectA_ClientMVC.Views.Main;
+using System.Threading.Tasks;
 using Avalonia.Markup.Xaml;
 using SchoolProjectA_ClientMVC.Views.Log;
 using SchoolProjectA_ClientMVC.Views.Menu;
 using System;
 using System.Text.RegularExpressions;
+using SchoolProjectA_ClientMVC.Models;
+using System.Runtime.CompilerServices;
 
 namespace SchoolProjectA_ClientMVC.Controllers;
 
@@ -21,7 +24,7 @@ class ConnexionController
     private void LinkEvents()
     {
         // Log page
-        _view.LogControl.ConnectBtn.Click += HandleConnexion;
+        _view.LogControl.ConnectBtn.Click += HandleConnexionEvent;
         _view.LogControl.LoginTB.GotFocus += ResetControl;
         _view.LogControl.PwdTB.GotFocus += ResetControl;
 
@@ -29,15 +32,21 @@ class ConnexionController
         _view.MenuControl.DisconnectBtn.Click += HandleDeconnexion;
     }
 
-    private void HandleConnexion(object? sender, RoutedEventArgs e)
+    private async Task HandleConnexion(object? sender, RoutedEventArgs e)
     {
-        if(ValidateConnexionInput())
+        if(await ValidateConnexionInput())
         {
-            System.Diagnostics.Debug.WriteLine("ok" + _view.LogControl.LoginTB.Text);
-            _view.MenuControl.User = _view.LogControl.LoginTB.Text;
+            System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
+            //_view.MenuControl.User = _view.LogControl.LoginTB.Text;
             _view.FullPage.Content = _view.MenuControl;
         }
     }
+
+    private void HandleConnexionEvent(object? sender, RoutedEventArgs e)
+    {
+        _ = HandleConnexion(sender, e); // Appel asynchrone de HandleConnexion
+    }
+
 
     private void HandleDeconnexion(object? sender, RoutedEventArgs e)
     {
@@ -57,7 +66,7 @@ class ConnexionController
     /// Checks errors in input when trying to connect to application + change colors of input.
     /// </summary>
     /// <returns></returns>
-    private bool ValidateConnexionInput()
+    private async Task<bool> ValidateConnexionInput()
     {
         bool isErrorFree = true;
 
@@ -78,21 +87,31 @@ class ConnexionController
 
         // Gestion de la taille ? Ailleurs ?
 
-        // Check special login char
+        /* Check special login char
         Regex reg = new("^[a-zA-Z0-9]+$");
         if(isErrorFree && !reg.IsMatch(_view.LogControl.LoginTB.Text))
         {
             _view.LogControl.LoginTB.Watermark = "Doit être être composé de symboles alphanumériques";
             _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
             isErrorFree = false;
-        }
+        }*/
 
-        
+
 
 
 
         // Check query
-
+        if (isErrorFree)
+        {
+            Moni moni = await Queries.GetMoni(_view.LogControl.LoginTB.Text);
+            if (moni != null)
+            {
+                moni = await Queries.CheckMoni(moni, _view.LogControl.PwdTB.Text);
+                if (moni != null) _view.MenuControl.MyMoni = moni;
+                else isErrorFree = false;
+            }
+            else isErrorFree = false;
+        }
         return isErrorFree;
     }
 
