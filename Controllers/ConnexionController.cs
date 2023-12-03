@@ -34,11 +34,26 @@ class ConnexionController
 
     private async Task HandleConnexion(object? sender, RoutedEventArgs e)
     {
-        if(await ValidateConnexionInput())
+        if(ValidateConnexionInput())
         {
-            System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
+            //System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
             //_view.MenuControl.User = _view.LogControl.LoginTB.Text;
-            _view.FullPage.Content = _view.MenuControl;
+            Moni? moni = await CheckMoniCredentials();
+            if(moni == null)
+            {
+                _view.LogControl.QueryLbl.IsVisible = true;
+                _view.LogControl.QueryLbl.Text = "Le mot de passe et login ne correspondent pas.";
+            }
+            else
+            {
+                _view.LogControl.QueryLbl.IsVisible = false;
+                _view.LogControl.LoginTB.Text = "";
+                _view.LogControl.PwdTB.Text = "";
+                _view.MenuControl.MyMoni = moni;
+                System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
+                _view.FullPage.Content = _view.MenuControl;
+            }
+            
         }
     }
 
@@ -62,11 +77,13 @@ class ConnexionController
         }
     }
 
+
+    // à passer en sync + move la query dans une async
     /// <summary>
     /// Checks errors in input when trying to connect to application + change colors of input.
     /// </summary>
     /// <returns></returns>
-    private async Task<bool> ValidateConnexionInput()
+    private bool ValidateConnexionInput()
     {
         bool isErrorFree = true;
 
@@ -95,24 +112,17 @@ class ConnexionController
             _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
             isErrorFree = false;
         }*/
-
-
-
-
-
-        // Check query
-        if (isErrorFree)
-        {
-            Moni moni = await Queries.GetMoni(_view.LogControl.LoginTB.Text);
-            if (moni != null)
-            {
-                moni = await Queries.CheckMoni(moni, _view.LogControl.PwdTB.Text);
-                if (moni != null) _view.MenuControl.MyMoni = moni;
-                else isErrorFree = false;
-            }
-            else isErrorFree = false;
-        }
         return isErrorFree;
+    }
+
+    private async Task<Moni?> CheckMoniCredentials()
+    {
+        Moni? moni = await Queries.GetMoni(_view.LogControl.LoginTB.Text!);
+        if (moni != null)
+        {
+            moni = await Queries.CheckMoni(moni, _view.LogControl.PwdTB.Text!);
+        }
+        return moni;
     }
 
 
