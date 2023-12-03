@@ -2,10 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:Class="SchoolProjectA_ClientMVC.Views.Log.LogView">  
-	  <Grid RowDefinitions="280,*,*,25,*" Width="400" Height="500">
+             x:Class="SchoolProjectA_ClientMVC.Views.Log.LogView"
+			 Width="400"
+			 Height="500"
+			 Background="WhiteSmoke"
+			 >
+	  <Grid RowDefinitions="280,*,*,25,*">
 		  <Panel Grid.Row="0">
-			  <Grid RowDefinitions="40,*" ColumnDefinitions="*, 112, 80">
+			  <Grid RowDefinitions="40,*" ColumnDefinitions="*, 120, 90">
 				  <Panel Grid.Column="1" VerticalAlignment="Center">
 					  <TextBlock>Pas de compte?</TextBlock>
 				  </Panel>
@@ -15,16 +19,16 @@
 			  </Grid>
 		  </Panel>
 		  <Panel Grid.Row="1">
-			  <TextBox Name="LoginTB" Margin="5,5" Watermark="Login" Height="35" Width="250"></TextBox>
+			  <TextBox Name="LoginTB" Margin="5,5" Watermark="Login" Height="35" Width="250" MaxLength="32"></TextBox>
 		  </Panel>
 		  <Panel Grid.Row="2">
-			  <TextBox Name="PwdTB" Margin="5,5" Watermark="Password" Height="35" Width="250" PasswordChar="*"></TextBox>
+			  <TextBox Name="PwdTB" Margin="5,5" Watermark="Password" Height="35" Width="250" MaxLength="64" PasswordChar="*"></TextBox>
 		  </Panel>
 		  <Panel Grid.Row="3">
 			  <TextBlock HorizontalAlignment="Center" Name="QueryLbl" IsVisible="false" Foreground="Red"></TextBlock>
 		  </Panel>
 		  <Panel Grid.Row="4">
-			  <Button HorizontalAlignment="Center" Margin="10,10" Name="ConnectBtn">Connexion</Button>
+			  <Button BorderBrush="Black" HorizontalAlignment="Center" Margin="10,10" Name="ConnectBtn">Connexion</Button>
 		  </Panel>
 	  </Grid>
 </UserControl>

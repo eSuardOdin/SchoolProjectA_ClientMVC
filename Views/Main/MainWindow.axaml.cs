@@ -8,6 +8,7 @@ public partial class MainWindow : Window
 {
     public LogView LogControl {get;set;}
     public MenuView MenuControl {get;set;}
+    public UserCreationView MyUserCreationView { get;set;}
     private readonly ConnexionController CnxCtrl;
     public MainWindow()
     {

@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="400" 
+			 Height="500"
+             x:Class="SchoolProjectA_ClientMVC.UserCreationView"
+			 Background="WhiteSmoke"
+			 >
+	<Grid RowDefinitions="*,70,45,70,70,70,50">
+		<Panel VerticalAlignment="Top" Grid.Row="0">
+			<Button BorderBrush="Black" Name="CancelUserCreationBtn" Margin="10" Background="Crimson">Annuler</Button>	
+		</Panel>
+		<StackPanel Grid.Row="1" HorizontalAlignment="Center">
+			<TextBox HorizontalAlignment="Center" Name="LoginTB" Margin="5,5" Watermark="Login" Height="35" Width="250" MaxLength="32"></TextBox>
+			<TextBlock HorizontalAlignment="Center" Name="LoginErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
+		</StackPanel>
+		<StackPanel Grid.Row="2" HorizontalAlignment="Center">
+			<TextBox PasswordChar="*" HorizontalAlignment="Center" Name="PwdTB" Margin="5,5" Watermark="Mot de passe" Height="35" Width="250" MaxLength="64"></TextBox>
+		</StackPanel>
+		<StackPanel Grid.Row="3" HorizontalAlignment="Center">
+			<TextBox PasswordChar="*" HorizontalAlignment="Center" Name="PwdConfiramtionTB" Margin="5,5" Watermark="Confirmation mot de passe" Height="35" Width="250" MaxLength="64"></TextBox>
+			<TextBlock HorizontalAlignment="Center" Name="PwdErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
+		</StackPanel>
+		<StackPanel Grid.Row="4" HorizontalAlignment="Center">
+			<TextBox HorizontalAlignment="Center" Name="LastNameTB" Margin="5,5" Watermark="Nom" Height="35" Width="250" MaxLength="32"></TextBox>
+			<TextBlock HorizontalAlignment="Center" Name="LastNameErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
+		</StackPanel>
+		<StackPanel Grid.Row="5" HorizontalAlignment="Center">
+			<TextBox HorizontalAlignment="Center" Name="FirstNameTB" Margin="5,5" Watermark="Prénom" Height="35" Width="250" MaxLength="32"></TextBox>
+			<TextBlock HorizontalAlignment="Center" Name="FirstNameErrorLbl" IsVisible="False" Foreground="Red"></TextBlock>
+		</StackPanel>
+		<Panel Grid.Row="6" HorizontalAlignment="Center">
+			<Button BorderBrush="Black" Name="CreateUserBtn">Créer</Button>
+		</Panel>
+	</Grid>
+</UserControl>

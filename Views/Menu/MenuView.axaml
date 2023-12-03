@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Width="800"
 			 Height="450"
-             x:Class="SchoolProjectA_ClientMVC.Views.Menu.MenuView">
+             x:Class="SchoolProjectA_ClientMVC.Views.Menu.MenuView"
+			 Background="WhiteSmoke">
   <Panel>
 	  <StackPanel Spacing="12" VerticalAlignment="Bottom" HorizontalAlignment="Center">
 		  <TextBlock Name="TextConnect"></TextBlock>
-          <Button Margin="20,20" Name="DisconnectBtn">Deconnexion</Button>
+          <Button BorderBrush="Black" Margin="20,20" Name="DisconnectBtn">Deconnexion</Button>
       </StackPanel>
   </Panel>
   
