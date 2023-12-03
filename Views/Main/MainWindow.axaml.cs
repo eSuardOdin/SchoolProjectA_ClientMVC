@@ -6,18 +6,19 @@ namespace SchoolProjectA_ClientMVC.Views.Main;
 
 public partial class MainWindow : Window
 {
-    public LogView LogControl {get;set;}
-    public MenuView MenuControl {get;set;}
+    public LogView MyLogView {get;set;}
+    public MenuView MyMenuView {get;set;}
     public UserCreationView MyUserCreationView { get;set;}
-    private readonly ConnexionController CnxCtrl;
+    private readonly GlobalController MyGlobalController;
     public MainWindow()
     {
-        LogControl = new LogView();
-        MenuControl = new MenuView();
-        CnxCtrl = new(this);
+        MyLogView = new LogView();
+        MyMenuView = new MenuView();
+        MyUserCreationView = new UserCreationView();
+        MyGlobalController = new(this);
 
         InitializeComponent();
 
-        FullPage.Content = LogControl;
+        FullPage.Content = MyLogView;
     }
 }

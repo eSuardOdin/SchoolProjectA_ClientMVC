@@ -12,10 +12,10 @@ using System.Runtime.CompilerServices;
 
 namespace SchoolProjectA_ClientMVC.Controllers;
 
-class ConnexionController
+class GlobalController
 {
     private readonly MainWindow _view;
-    public ConnexionController(MainWindow view)
+    public GlobalController(MainWindow view)
     {
         _view = view;
         LinkEvents();
@@ -24,12 +24,12 @@ class ConnexionController
     private void LinkEvents()
     {
         // Log page
-        _view.LogControl.ConnectBtn.Click += HandleConnexionEvent;
-        _view.LogControl.LoginTB.GotFocus += ResetControl;
-        _view.LogControl.PwdTB.GotFocus += ResetControl;
+        _view.MyLogView.ConnectBtn.Click += HandleConnexionEvent;
+        _view.MyLogView.LoginTB.GotFocus += ResetControl;
+        _view.MyLogView.PwdTB.GotFocus += ResetControl;
 
         // Menu page
-        _view.MenuControl.DisconnectBtn.Click += HandleDeconnexion;
+        _view.MyMenuView.DisconnectBtn.Click += HandleDeconnexion;
     }
 
     private async Task HandleConnexion(object? sender, RoutedEventArgs e)
@@ -38,23 +38,23 @@ class ConnexionController
         {
             //System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
             //_view.MenuControl.User = _view.LogControl.LoginTB.Text;
-            _view.LogControl.ConnectBtn.IsEnabled = false;
+            _view.MyLogView.ConnectBtn.IsEnabled = false;
             Moni? moni = await CheckMoniCredentials();
             if(moni == null)
             {
-                _view.LogControl.QueryLbl.IsVisible = true;
-                _view.LogControl.QueryLbl.Text = "Le mot de passe et login ne correspondent pas.";
+                _view.MyLogView.QueryLbl.IsVisible = true;
+                _view.MyLogView.QueryLbl.Text = "Le mot de passe et login ne correspondent pas.";
             }
             else
             {
-                _view.LogControl.QueryLbl.IsVisible = false;
-                _view.LogControl.LoginTB.Text = "";
-                _view.LogControl.PwdTB.Text = "";
-                _view.MenuControl.MyMoni = moni;
-                System.Diagnostics.Debug.WriteLine($"{_view.MenuControl.MyMoni.FirstName} {_view.MenuControl.MyMoni.LastName}");
-                _view.FullPage.Content = _view.MenuControl;
+                _view.MyLogView.QueryLbl.IsVisible = false;
+                _view.MyLogView.LoginTB.Text = "";
+                _view.MyLogView.PwdTB.Text = "";
+                _view.MyMenuView.MyMoni = moni;
+                System.Diagnostics.Debug.WriteLine($"{_view.MyMenuView.MyMoni.FirstName} {_view.MyMenuView.MyMoni.LastName}");
+                _view.FullPage.Content = _view.MyMenuView;
             }
-            _view.LogControl.ConnectBtn.IsEnabled = true;
+            _view.MyLogView.ConnectBtn.IsEnabled = true;
         }
     }
 
@@ -66,7 +66,8 @@ class ConnexionController
 
     private void HandleDeconnexion(object? sender, RoutedEventArgs e)
     {
-        _view.FullPage.Content = _view.LogControl;
+        _view.FullPage.Content = _view.MyLogView;
+        _view.MyMenuView.MyMoni = null;
     }
 
     private void ResetControl(object? sender, RoutedEventArgs e)
@@ -89,39 +90,28 @@ class ConnexionController
         bool isErrorFree = true;
 
         // Check emptyness
-        if(_view.LogControl.LoginTB.Text?.Trim() == "" || _view.LogControl.LoginTB.Text is null)
+        if(_view.MyLogView.LoginTB.Text?.Trim() == "" || _view.MyLogView.LoginTB.Text is null)
         {
-            _view.LogControl.LoginTB.Watermark = "Le login doit être renseigné";
-            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
+            _view.MyLogView.LoginTB.Watermark = "Le login doit être renseigné";
+            _view.MyLogView.LoginTB.Background = Avalonia.Media.Brushes.Red;
             isErrorFree = false;
         }
 
-        if (_view.LogControl.PwdTB.Text?.Trim() == "" || _view.LogControl.PwdTB.Text is null)
+        if (_view.MyLogView.PwdTB.Text?.Trim() == "" || _view.MyLogView.PwdTB.Text is null)
         {
-            _view.LogControl.PwdTB.Watermark = "Le mot de passe doit être renseigné";
-            _view.LogControl.PwdTB.Background = Avalonia.Media.Brushes.Red;
+            _view.MyLogView.PwdTB.Watermark = "Le mot de passe doit être renseigné";
+            _view.MyLogView.PwdTB.Background = Avalonia.Media.Brushes.Red;
             isErrorFree = false;
         }
-
-        // Gestion de la taille ? Ailleurs ?
-
-        /* Check special login char
-        Regex reg = new("^[a-zA-Z0-9]+$");
-        if(isErrorFree && !reg.IsMatch(_view.LogControl.LoginTB.Text))
-        {
-            _view.LogControl.LoginTB.Watermark = "Doit être être composé de symboles alphanumériques";
-            _view.LogControl.LoginTB.Background = Avalonia.Media.Brushes.Red;
-            isErrorFree = false;
-        }*/
         return isErrorFree;
     }
 
     private async Task<Moni?> CheckMoniCredentials()
     {
-        Moni? moni = await Queries.GetMoni(_view.LogControl.LoginTB.Text!);
+        Moni? moni = await Queries.GetMoni(_view.MyLogView.LoginTB.Text!);
         if (moni != null)
         {
-            moni = await Queries.CheckMoni(moni, _view.LogControl.PwdTB.Text!);
+            moni = await Queries.CheckMoni(moni, _view.MyLogView.PwdTB.Text!);
         }
         return moni;
     }
