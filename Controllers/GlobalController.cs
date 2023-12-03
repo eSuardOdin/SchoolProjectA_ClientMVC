@@ -21,17 +21,40 @@ class GlobalController
         LinkEvents();
     }
 
+
+    /// <summary>
+    /// Link the buttons events from the 3 mains views
+    /// </summary>
     private void LinkEvents()
     {
         // Log page
         _view.MyLogView.ConnectBtn.Click += HandleConnexionEvent;
         _view.MyLogView.LoginTB.GotFocus += ResetControl;
         _view.MyLogView.PwdTB.GotFocus += ResetControl;
+        _view.MyLogView.CreateUserBtn.Click += ShowUserCreationView;
+
+        // User creation
+        _view.MyUserCreationView.CancelUserCreationBtn.Click += CancelUserCreation;
 
         // Menu page
         _view.MyMenuView.DisconnectBtn.Click += HandleDeconnexion;
     }
 
+    
+    
+    //-----------------------
+    //      O---------O
+    //      | LogView |
+    //      O---------O
+    //-----------------------
+    
+    
+    /// <summary>
+    /// Handle the connexion to the application<br/>If ok, MenuView is shown withs its Moni attached
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// <returns></returns>
     private async Task HandleConnexion(object? sender, RoutedEventArgs e)
     {
         if(ValidateConnexionInput())
@@ -58,26 +81,38 @@ class GlobalController
         }
     }
 
+    
+    
+    
+    /// <summary>
+    /// Linked to the button click to lauch the asynchronous HandleConnexion
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void HandleConnexionEvent(object? sender, RoutedEventArgs e)
     {
         _ = HandleConnexion(sender, e); // Appel asynchrone de HandleConnexion
     }
 
 
-    private void HandleDeconnexion(object? sender, RoutedEventArgs e)
-    {
-        _view.FullPage.Content = _view.MyLogView;
-        _view.MyMenuView.MyMoni = null;
-    }
 
+
+    /// <summary>
+    /// Reset text boxes in LogView
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ResetControl(object? sender, RoutedEventArgs e)
     {
-        if(((TextBox)sender).Background == Avalonia.Media.Brushes.Red)
+        if (((TextBox)sender).Background == Avalonia.Media.Brushes.Red)
         {
             ((TextBox)sender).Background = Avalonia.Media.Brushes.White;
             ((TextBox)sender).Watermark = ((TextBox)sender).Name == "LoginTB" ? "Login" : "Password";
         }
     }
+
+
+
 
 
     // à passer en sync + move la query dans une async
@@ -90,7 +125,7 @@ class GlobalController
         bool isErrorFree = true;
 
         // Check emptyness
-        if(_view.MyLogView.LoginTB.Text?.Trim() == "" || _view.MyLogView.LoginTB.Text is null)
+        if (_view.MyLogView.LoginTB.Text?.Trim() == "" || _view.MyLogView.LoginTB.Text is null)
         {
             _view.MyLogView.LoginTB.Watermark = "Le login doit être renseigné";
             _view.MyLogView.LoginTB.Background = Avalonia.Media.Brushes.Red;
@@ -106,6 +141,14 @@ class GlobalController
         return isErrorFree;
     }
 
+
+
+
+
+    /// <summary>
+    /// Checks Moni credentials
+    /// </summary>
+    /// <returns>Returns the moni if ok or null if not</returns>
     private async Task<Moni?> CheckMoniCredentials()
     {
         Moni? moni = await Queries.GetMoni(_view.MyLogView.LoginTB.Text!);
@@ -115,6 +158,58 @@ class GlobalController
         }
         return moni;
     }
+
+
+
+
+
+    private void ShowUserCreationView(object? sender, RoutedEventArgs e)
+    {
+        _view.FullPage.Content = _view.MyUserCreationView;
+        _view.MyLogView.QueryLbl.IsVisible = false;
+        _view.MyLogView.LoginTB.Text = "";
+        _view.MyLogView.PwdTB.Text = "";
+    }
+
+    //-----------------------
+    //      O----------O
+    //      | MenuView |
+    //      O----------O
+    //-----------------------
+    /// <summary>
+    /// Handles the deconnexion
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HandleDeconnexion(object? sender, RoutedEventArgs e)
+    {
+        _view.FullPage.Content = _view.MyLogView;
+        _view.MyMenuView.MyMoni = null;
+    }
+
+
+
+
+
+    //------------------------------
+    //      O------------------O
+    //      | UserCreationView |
+    //      O------------------O
+    //-----------------------------
+    private void CancelUserCreation(object? sender, RoutedEventArgs e)
+    {
+        _view.FullPage.Content = _view.MyLogView;
+    }
+
+    private bool CheckUserCreationInput()
+    {
+        bool IsErrorFree = true;
+
+
+        return IsErrorFree;
+    }
+
+    
 
 
 }
