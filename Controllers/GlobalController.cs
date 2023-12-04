@@ -267,6 +267,7 @@ class GlobalController
         ResetErrorLbl();
         var view = _view.MyUserCreationView;
         view.CreateUserBtn.IsEnabled = false;
+        view.CancelUserCreationBtn.IsEnabled = false;
         bool isErrorFree = CheckUserCreationInput();
         if(isErrorFree)
         {
@@ -287,7 +288,7 @@ class GlobalController
                 view.QueryStatusLbl.IsVisible = true;
                 if(targetMoni != null)
                 {
-                    view.QueryStatusLbl.Text = $"Le moni {targetMoni.MoniLogin} a été créé avec succès, vous pouvez quitter cette page pour vous connecter";
+                    view.QueryStatusLbl.Text = $"Le Moni {targetMoni.MoniLogin} a été créé avec succès.";
                     view.QueryStatusLbl.Foreground = Avalonia.Media.Brushes.Green;
                 }
                 else
@@ -297,8 +298,8 @@ class GlobalController
                 }
             }
         }
-        
-        _view.MyUserCreationView.CreateUserBtn.IsEnabled = true;
+        view.CancelUserCreationBtn.IsEnabled = true;
+        view.CreateUserBtn.IsEnabled = true;
     }
 
 

@@ -9,8 +9,8 @@
 			 >
 	<Grid RowDefinitions="*,70,45,70,70,70,50">
 		<StackPanel VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Center">
+			<Button BorderBrush="Black" Name="CancelUserCreationBtn" Margin="10" HorizontalAlignment="Center" Background="Beige">Retour</Button>	
 			<TextBlock Name="QueryStatusLbl" HorizontalAlignment="Center" IsVisible="False"></TextBlock>
-			<Button BorderBrush="Black" Name="CancelUserCreationBtn" Margin="10" Background="Beige">Retour</Button>	
 		</StackPanel>
 		<StackPanel Grid.Row="1" HorizontalAlignment="Center">
 			<TextBox HorizontalAlignment="Center" Name="LoginTB" Margin="5,5" Watermark="Login" Height="35" Width="250" MaxLength="32"></TextBox>

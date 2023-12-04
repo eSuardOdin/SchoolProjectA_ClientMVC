@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj": {}
+    "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj": {
+    "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
+        "projectUniqueName": "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
         "projectName": "SchoolProjectA_ClientMVC",
-        "projectPath": "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
+        "projectPath": "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
         "packagesPath": "C:\\Users\\Erwann\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\obj\\",
+        "outputPath": "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

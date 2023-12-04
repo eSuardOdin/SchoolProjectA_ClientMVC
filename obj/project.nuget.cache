@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fjdkmqfWuDhAriKpgsbPTkfOTZZc2wLUZ20uH9/MK6s0dSGCG2OYqveMkLWoPtjavsXJrT85ncPSEPfoqJ2SYg==",
+  "dgSpecHash": "3svu9Yap29E8ujsJbBDp7WXtWY0d96aPjiaLj0DZqUEnkFmGYMVaX6EDwcHAof86qdds7apapVh636ZVr/Dwww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Erwann\\Source\\Repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
+  "projectFilePath": "C:\\Users\\Erwann\\source\\repos\\SchoolProjectA_ClientMVC\\SchoolProjectA_ClientMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Erwann\\.nuget\\packages\\avalonia\\11.0.5\\avalonia.11.0.5.nupkg.sha512",
     "C:\\Users\\Erwann\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.0.2023020321\\avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",

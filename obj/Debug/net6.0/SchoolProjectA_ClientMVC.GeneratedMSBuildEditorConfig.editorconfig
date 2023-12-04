@@ -13,19 +13,19 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SchoolProjectA_ClientMVC
-build_property.ProjectDir = C:\Users\Erwann\Source\Repos\SchoolProjectA_ClientMVC\
+build_property.ProjectDir = C:\Users\Erwann\source\repos\SchoolProjectA_ClientMVC\
 
-[C:/Users/Erwann/Source/Repos/SchoolProjectA_ClientMVC/App.axaml]
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Erwann/Source/Repos/SchoolProjectA_ClientMVC/Views/Log/LogView.axaml]
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/Log/LogView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Erwann/Source/Repos/SchoolProjectA_ClientMVC/Views/Main/MainWindow.axaml]
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/Main/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Erwann/Source/Repos/SchoolProjectA_ClientMVC/Views/Menu/MenuView.axaml]
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/Menu/MenuView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Erwann/Source/Repos/SchoolProjectA_ClientMVC/Views/UserCreation/UserCreationView.axaml]
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/UserCreation/UserCreationView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
