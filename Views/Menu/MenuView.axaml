@@ -2,19 +2,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Width="800"
-			 Height="450"
+             Width="1200"
+			 Height="720"
              x:Class="SchoolProjectA_ClientMVC.Views.Menu.MenuView"
 			 Background="WhiteSmoke">
 
-	<Grid ShowGridLines="True" RowDefinitions="80,*" ColumnDefinitions="130,*">
+	<Grid ShowGridLines="True" RowDefinitions="80,*" ColumnDefinitions="145,*">
 		<StackPanel Spacing="12" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-			<TextBlock Margin="100, 0" VerticalAlignment="Center" FontFamily="MV Boli" FontSize="45" FontStretch="ExtraExpanded">MoniWatch</TextBlock>
+			<TextBlock Margin="300, 0" VerticalAlignment="Center" FontFamily="MV Boli" FontSize="45" FontStretch="ExtraExpanded">MoniWatch</TextBlock>
 			<Button BorderBrush="Black" Margin="40,20"  Name="DisconnectBtn">Deconnexion</Button>
 		</StackPanel>
-		<StackPanel Grid.Row="0" Grid.Column="0">
-			
+		<StackPanel Grid.Row="1" Grid.Column="0" Spacing="120" Margin="0,90">
+			<Button Foreground="Black" Background="Transparent" Width="145" FontSize="20" Tag="Accounts">Comptes</Button>
+			<Button Foreground="Black" Background="Transparent" Width="145" FontSize="20" Tag="Transactions">Transactions</Button>
+			<Button Foreground="Black" Background="Transparent" Width="145" FontSize="20" Tag="Tags">Balises</Button>
 		</StackPanel>
+		
+		<UserControl Grid.Row="1" Grid.Column="1" Name="MainView">
+			
+		</UserControl>
 	</Grid>
   
 </UserControl>

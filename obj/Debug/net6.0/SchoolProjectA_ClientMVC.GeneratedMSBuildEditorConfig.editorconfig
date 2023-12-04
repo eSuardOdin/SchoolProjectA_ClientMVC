@@ -24,6 +24,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/Main/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/MenuSubViews/Accounts/AccountsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Erwann/source/repos/SchoolProjectA_ClientMVC/Views/Menu/MenuView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

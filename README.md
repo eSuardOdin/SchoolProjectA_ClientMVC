@@ -20,3 +20,6 @@
 
 à faire :
 Mieux checker le pseudo + mdp lors de la création
+
+Live charts core ?
+(LiveChartsCore.SkiaSharpView.Avalonia)
